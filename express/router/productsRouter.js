@@ -8,19 +8,6 @@ const products = new apiProducts('productos.txt')
 const administrador = true
 
 
-
-routeProducts.get('/:id', async (req, res) =>{
-    if (req.params.id === 'arrayproductos') {
-        const allProducts = await products.getAll()
-        res.json(allProducts)
-    } else {
-    const productById = [await products.getById(parseInt(req.params.id))]
-    productById[0] === null
-        ? res.json({ Error:  'Producto no encontrado' })
-        : res.json(productById)
-    }
-})
-
 routeProducts.post('/', async (req, res) =>{
     if (administrador) {
         const savedProduct = await products.save(req.body)
