@@ -1,4 +1,5 @@
 const { Router: router } = require('express')
+const { DAOproductos } = require('../config.js')
 const apiProducts = require('../api/app.js')
 
 const routeProducts = new router()
@@ -7,7 +8,7 @@ const products = new apiProducts('productos.txt')
 const administrador = true
 
 routeProducts.get('/ui', async (req, res) => {
-    const productsList = await products.getAll()
+    const productsList = await DAOproductos.getAll()
     res.render('index.ejs', {
         misProd: productsList,
         productos: productsList.length
