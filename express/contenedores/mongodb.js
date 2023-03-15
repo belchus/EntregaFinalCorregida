@@ -10,22 +10,21 @@ mongoose.connect('mongodb+srv://belshus:<password>@cluster0.vu0bw1i.mongodb.net/
     }
 )
 
-class mongodb {
-
-    constructor (collection, schema) {
-        const newSchema = new mongoose.Schema(schema)
-        this.newModel = mongoose.model(collection, newSchema)
-    }
+const productModel = require("/models/producto.js")
+module.exports = class ProductosDaoMongoDb extends contenedorMongoDb {
+  constructor() {
+    super(productModel)
+  }
 
  
-    async getAll() {
-        try {
-            return await this.newModel.find().then(res => { return res })
-        } catch (error) {
-            console.log('Error en la base de datos', error)
-        }
-    }
-
+  async getAll() {
+    return this.newModel.find()
+      .then(res => res)
+      .catch(error => {
+        console.log('Error/contenedor/mongodb/getAll', error)
+        return error;
+      })
+  }
     async getById(id) {
         try {
             return await this.newModel.findById(id).then(res => { return res })
@@ -107,4 +106,4 @@ class mongodb {
 
 }
 
-export default mongodb
+export default Mongodb

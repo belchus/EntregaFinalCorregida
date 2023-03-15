@@ -9,7 +9,7 @@ const productSchema =
         thumbnail: {type: String, require: true, max: 70}
     }
 
-class productoMongo extends mongodb {
+class ProductMongoDao extends mongodb {
 
     constructor (){
         super('productos', productSchema)
@@ -17,4 +17,4 @@ class productoMongo extends mongodb {
 
 }
 
-export default productoMongo
+export default ProductMongoDao

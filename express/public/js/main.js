@@ -1,5 +1,5 @@
 const { Router: router } = require('express')
-const { DAOproductos } = require('../config.js')
+const { DAOproductos } = require('../DAO/index.js')
 const apiProducts = require('../api/app.js')
 
 const routeProducts = new router()

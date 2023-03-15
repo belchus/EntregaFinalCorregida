@@ -1,7 +1,7 @@
 
 const { Router: router } = require('express')
 const apiProducts = require('../api/app.js')
-import { DAOproductos } from '../config.js'
+import { DAOproductos } from '../DAO/index.js'
 const routeProducts = new router()
 
 //const products = new apiProducts('productos.txt')

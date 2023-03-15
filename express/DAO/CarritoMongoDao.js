@@ -6,7 +6,7 @@ const cartSchema =
         user: {type: String, required: true, max: 15},
     }
 
-class carritoMongo extends mongodb {
+class CarritoMongoDao extends mongodb {
 
     constructor (){
         super('carritos', cartSchema)
@@ -14,4 +14,4 @@ class carritoMongo extends mongodb {
 
 }
 
-export default carritoMongo
+export default CarritoMongoDao

@@ -9,11 +9,10 @@ admin.initializeApp({
 console.log('Base de datos conectada')
 const db = admin.firestore()
 
-class firebase {
+class Firebase {
 
     constructor (collection) {
-        this.collection = collection
-        this.query = db.collection(this.collection)
+        this.query = db.collection(collection)
     }
 
     async getAll() {
@@ -43,11 +42,11 @@ class firebase {
         try {
             const doc = this.query.doc(`${id}`)
             await doc.delete()
-        } catch (err) {
-            console.log('Error al eliminar ', err)
+        } catch (error) {
+            console.log('Error/contenedor/firebase/deleteById', error)
+            throw new Error(error)
         }
     }
-
 
     async saveProduct (product) {
         try {
@@ -79,33 +78,7 @@ class firebase {
         }
     }
 
-    async addProductById (id, data) {
-        try {
-            const cartToUpdate = await this.getById(id)
-            const arrayProducts = [...cartToUpdate.productos, data]
-            const doc = this.query.doc(`${id}`)
-            await doc.update({ productos: arrayProducts })
-            const updatedCart = await this.getById(id)
-            return updatedCart
-        } catch (error) {
-            console.log(`Error en la base de datos, ${error}`)
-        }
-    }
-
-    async deleteProductById (id, data) {
-        try {
-            const cartToUpdate = await this.getById(id)
-            const productToDelete = cartToUpdate.productos.findIndex(product => product.product === data.product)
-            cartToUpdate.productos.splice(productToDelete, 1)
-            const doc = this.query.doc(`${id}`)
-            await doc.set(cartToUpdate)
-            const updatedCart = await this.getById(id)
-            return updatedCart
-        } catch (error) {
-            console.log(`Error en la base de datos, ${error}`)
-        }
-    }
 
 }
 
-export default firebase
+export default Firebase

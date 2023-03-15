@@ -1,7 +1,7 @@
 
 import firebase from "../contenedores/firebase.js"
 
-class carritoFB extends firebase {
+class CarritoFirebaseDao extends firebase {
 
     constructor (){
         super('carritos')
@@ -9,4 +9,4 @@ class carritoFB extends firebase {
 
 }
 
-export default carritoFB
+export default CarritoFirebaseDao
